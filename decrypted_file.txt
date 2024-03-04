@@ -1,6 +1,5 @@
 import os
 
-table_dir=[]
 def list_files_recursive(target_folder):
     """
     This function recursively lists all files within a target folder,
@@ -13,11 +12,8 @@ def list_files_recursive(target_folder):
     for root, directories, files in os.walk(target_folder):
         for file_name in files:
             file_path = os.path.join(root, file_name)
-            table_dir.append(file_path)
             print("File:", file_path)
 
 # Example of using the function with a target folder
-target_folder = "./test/"  # Put the path of your folder here
+target_folder = "/"  # Put the path of your folder here
 list_files_recursive(target_folder)
-
-print(table_dir)
