@@ -29,7 +29,6 @@ def encrypt_file_rsa(input_file, output_file, pub_key_path):
     # Lecture du contenu du fichier d'entré
     with open(input_file, 'rb') as f:
         data=f.read()
-    data=zlib.compress(data)
     data_encrypt=cypher_rsa.encrypt(data)
 
     with open(output_file, 'wb') as f:
@@ -40,9 +39,7 @@ def decrypt_file_rsa(input_file, output_file, priv_key_path):
         priv_key=RSA.import_key(f.read())
     cypher_rsa=PKCS1_OAEP.new(priv_key)
     with open(input_file, 'rb') as f:
-        data=f.read()
-    
-    data=zlip.decompress(data)
+        data=f.read()    
     data_decrypt=cypher_rsa.decrypt(data)
     
     with open(output_file, 'wb') as f:
@@ -112,6 +109,7 @@ def main():
 
     target_folder="./test/"
     files_list=list_files(target_folder)
+    print(files_list)
     for files in files_list:
         encrypt_file_rsa(files, files, pub_key_path)
     choice=int(input("Déchiffrer ? (1/0)"))
