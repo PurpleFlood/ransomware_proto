@@ -1,6 +1,5 @@
 import os
 import XOR_encrypt
-
 def list_files(target_folder):
     files_found = []
 
@@ -13,12 +12,18 @@ def list_files(target_folder):
     return files_found
 
 def main():
-    files=list_files("./test/")
-    print(files)
+    plain_text_file=open("./test/test.txt", "r")
+    plain_text_file.read()
+    
 
-    file=open(files[0], 'r')
-    key=111000111101010101
-    file.encode('ascii')
-    print(XOR_encrypt.encrypt_XOR(key, file))
+    key_file=open("./key.txt", "r")
+    key_file.read()
+
+    encrypted_text=""
+    encrypted_text=XOR_encrypt.encrypt_XOR(plain_text_file, key_file)
+    key_file.close()
+    plain_text_file.close()
+
+    print(f'Encrypted plaintext: {encrypted_text}')
 if __name__ == "__main__":
     main()
